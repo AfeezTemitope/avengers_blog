@@ -1,4 +1,4 @@
-package com.avengersblog.Services;
+package com.avengersblog.Services.User;
 
 import com.avengersblog.Data.Model.User;
 import com.avengersblog.Data.Repository.UserRepository;

@@ -1,4 +1,4 @@
-package com.avengersblog.Services;
+package com.avengersblog.Services.User;
 
 import com.avengersblog.Dto.request.UpdateUserProFilRequest;
 import com.avengersblog.Dto.response.UpdateUserProFileResponse;
