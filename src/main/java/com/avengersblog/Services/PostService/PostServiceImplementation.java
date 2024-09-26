@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -34,6 +35,8 @@ public class PostServiceImplementation implements PostService {
         Post post = new Post();
         post.setTitle(postRequest.getTitle());
         post.setCaption(postRequest.getCaption());
+        post.setCreatedAt(LocalDateTime.now());
+        post.setCategory(postRequest.getCategory());
         return post;
     }
     private String uploadContent(MultipartFile file) throws IOException {

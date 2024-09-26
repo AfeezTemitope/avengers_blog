@@ -7,6 +7,8 @@ import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Setter
 @Getter
@@ -20,4 +22,5 @@ public class Post {
     private String imageUrl;
     private String caption;
     private Category category;
+    private LocalDateTime createdAt;
 }
