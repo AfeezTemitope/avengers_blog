@@ -1,4 +1,4 @@
-package com.avengersblog.Services.PostService;
+package com.avengersblog.Services.PostServiceTest;
 
 import com.avengersblog.Data.Model.Category;
 import com.avengersblog.Data.Model.Post;
@@ -8,10 +8,11 @@ import com.avengersblog.Dto.request.Post.UploadPostRequest;
 import com.avengersblog.Dto.response.Post.DeletePostResponse;
 import com.avengersblog.Dto.response.Post.UpdatePostResponse;
 
+import java.io.IOException;
 import java.util.List;
 
-public interface UploadPostService {
-    Post uploadPost(UploadPostRequest postRequest);
+public interface PostService {
+    Post uploadPost(UploadPostRequest postRequest) throws IOException;
     UpdatePostResponse updatePost(UpdatePostRequest updateRequest);
     Post findPostByTitle(String title);
     Post findPostById(Long id);
