@@ -1,6 +1,7 @@
 package com.avengersblog.Services.CommentTest;
 
 import com.avengersblog.Dto.request.Comments.CreateCommentRequest;
+import com.avengersblog.Dto.request.Comments.DeleteCommentResponse;
 import com.avengersblog.Dto.request.Comments.UpdateCommentRequest;
 import com.avengersblog.Dto.response.Comments.CreateCommentResponse;
 import com.avengersblog.Exceptions.CommentException;
@@ -54,5 +55,17 @@ class CommentServiceImplTest {
         CreateCommentResponse response = commentService.updateComment(updateCommentRequest);
         assertNotNull(response);
     }
+    @Test
+    void testThatCommentsCanBeDeleted(){
+        CreateCommentRequest request = new CreateCommentRequest();
+        request.setComment("this is the avengers");
+        request.setCreatedAt(LocalDateTime.now());
+        request.setUserId(request.getUserId());
+        request.setPostId(request.getPostId());
+        commentService.commentsOnPost(request);
+        CreateCommentResponse response = commentService.commentsOnPost(request);
 
+        DeleteCommentResponse deleteCommentResponse = commentService.deleteComment(response);
+        deleteCommentResponse.getMessage("deleted successfully");
+    }
 }
