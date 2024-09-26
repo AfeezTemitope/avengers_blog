@@ -1,8 +1,7 @@
-package com.avengersblog.Services;
+package com.avengersblog.Services.CommentTest;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class CommentServiceImplTest {
 
