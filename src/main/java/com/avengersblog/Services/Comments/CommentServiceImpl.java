@@ -1,4 +1,4 @@
-package com.avengersblog.Services;
+package com.avengersblog.Services.Comments;
 
 import com.avengersblog.Data.Model.Comments;
 import com.avengersblog.Data.Repository.CommentRepository;
@@ -14,7 +14,7 @@ public class CommentServiceImpl implements CommentService {
     private CommentRepository commentRepository;
 
     public List<Comments> getCommentsByPostId(Long postId)  {
-        return commentRepository.findByPostId(postId);
-
+      //  return commentRepository.findByPostId(postId);
+        return null;
     }
 }

@@ -3,7 +3,7 @@ package com.avengersblog.Controller;
 import com.avengersblog.Dto.request.UpdateUserProFilRequest;
 import com.avengersblog.Dto.response.ApiResponse;
 import com.avengersblog.Dto.response.UpdateUserProFileResponse;
-import com.avengersblog.Services.UserService;
+import com.avengersblog.Services.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
