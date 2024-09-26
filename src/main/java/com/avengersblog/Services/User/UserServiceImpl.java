@@ -2,7 +2,9 @@ package com.avengersblog.Services.User;
 
 import com.avengersblog.Data.Model.User;
 import com.avengersblog.Data.Repository.UserRepository;
+import com.avengersblog.Dto.request.LoginRequest;
 import com.avengersblog.Dto.request.UpdateUserProFilRequest;
+import com.avengersblog.Dto.response.LoginResponse;
 import com.avengersblog.Dto.response.UpdateUserProFileResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,10 +31,21 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public LoginResponse login(LoginRequest loginRequest) {
+        User user = findUserByUsername(loginRequest.getUsername());
+        PasswordValidation(user, loginRequest.getPassword());
+        user.setLoggedIn(true);
+        LoginResponse loginResponse = new LoginResponse();
+        loginResponse.setMessage("Successfully logged in");
+        return loginResponse;
+    }
 
-
-
-
+    private void PasswordValidation(User user, String password) {
+        if (!password.equals(user.getPassword()) && password.trim().isEmpty()) {
+            throw new RuntimeException("Invalid Credentials");
+        }
+    }
 
 
     private void findUserByEmail(String email) {
@@ -41,5 +54,8 @@ public class UserServiceImpl implements UserService {
 
     }
 
-
+    private User findUserByUsername(String username) {
+        return userRepository.findUserByEmail(username).
+                orElseThrow(() -> new RuntimeException(username + "User Not Found"));
+    }
 }
