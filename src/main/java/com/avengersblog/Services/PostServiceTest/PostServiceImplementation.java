@@ -1,4 +1,4 @@
-package com.avengersblog.Services.PostService;
+package com.avengersblog.Services.PostServiceTest;
 
 import com.avengersblog.Data.Model.Category;
 import com.avengersblog.Data.Model.Post;
