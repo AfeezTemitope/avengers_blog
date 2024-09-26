@@ -16,5 +16,8 @@ public class Post {
     private Long id;
 
     private String title;
-
+    private int likeCount;
+    private String imageUrl;
+    private String caption;
+    private Category category;
 }
