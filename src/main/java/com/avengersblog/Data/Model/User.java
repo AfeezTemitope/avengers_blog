@@ -22,6 +22,7 @@ public class User {
     private String userName;
     private String email;
     private String password;
+    private boolean isLoggedIn;
 
     @OneToMany
     private List <Post> posts = new ArrayList<>();
