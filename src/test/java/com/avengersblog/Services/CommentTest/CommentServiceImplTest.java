@@ -1,4 +1,4 @@
-package com.avengersblog.Services;
+package com.avengersblog.Services.CommentTest;
 
 import com.avengersblog.Dto.request.Comments.CreateCommentRequest;
 import com.avengersblog.Dto.request.Comments.DeleteCommentResponse;

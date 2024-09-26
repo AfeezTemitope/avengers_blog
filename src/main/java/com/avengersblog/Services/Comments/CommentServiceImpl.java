@@ -3,6 +3,7 @@ package com.avengersblog.Services.Comments;
 import com.avengersblog.Data.Model.Comments;
 import com.avengersblog.Data.Repository.CommentRepository;
 import com.avengersblog.Dto.request.Comments.CreateCommentRequest;
+import com.avengersblog.Dto.request.Comments.DeleteCommentResponse;
 import com.avengersblog.Dto.request.Comments.UpdateCommentRequest;
 import com.avengersblog.Dto.response.Comments.CreateCommentResponse;
 import com.avengersblog.Exceptions.CommentException;
@@ -44,5 +45,10 @@ public class CommentServiceImpl implements CommentService {
         commentRepository.save(comment);
         return new CreateCommentResponse();
 
+    }
+
+    @Override
+    public DeleteCommentResponse deleteComment(CreateCommentResponse response) {
+        return null;
     }
 }
