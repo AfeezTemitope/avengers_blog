@@ -32,6 +32,5 @@ public class UserServiceImplTest {
         System.out.println(userRequest);
         assertThat(userResponse).isNotNull();
         assertThat(userResponse.getMessage()).isEqualTo("You Register Successful");
-
     }
 }
