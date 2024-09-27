@@ -96,6 +96,9 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("cannot be empty");
        }
 
-
     }
+    private String countLike(String name){
+        return name;
+    }
+
 }
