@@ -22,15 +22,15 @@ public class UserServiceImplTest {
     @Test
     void createUser() {
         UserRequest userRequest = new UserRequest();
-        userRequest.setEmail("rebzyspecial2323@gmail.com");
-        userRequest.setLastName("Rebzy");
+        userRequest.setEmail("azeezmuritalaadeniyi@gmail.com");
+        userRequest.setUserName("azeez");
+        userRequest.setLastName("alfa");
         userRequest.setFirstName("oba");
-        userRequest.setPassword("12345");
+        userRequest.setPassword("56432");
 
-//        UserResponse userResponse = userService.savedUser(userRequest);
-//        System.out.println(userRequest);
-//        assertThat(userResponse).isNotNull();
-//        assertThat(userResponse.getMessage()).isEqualTo("You have Register Successfully");
-
+        UserResponse userResponse = userService.savedUser(userRequest);
+        System.out.println(userRequest);
+        assertThat(userResponse).isNotNull();
+        assertThat(userResponse.getMessage()).isEqualTo("You Register Successful");
     }
 }
