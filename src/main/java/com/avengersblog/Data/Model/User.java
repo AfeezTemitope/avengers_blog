@@ -1,16 +1,14 @@
 package com.avengersblog.Data.Model;
 
 import jakarta.persistence.*;
-import lombok.*;
-
+import lombok.Getter;
+import lombok.Setter;
 import java.util.List;
 
 
 
 import java.util.ArrayList;
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Entity
 @Getter
 @Setter
@@ -24,7 +22,7 @@ public class User {
     private String userName;
     private String email;
     private String password;
-    private boolean isEnabled;
+    private boolean isLoggedIn;
 
     @OneToMany
     private List <Post> posts = new ArrayList<>();

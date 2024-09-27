@@ -15,6 +15,7 @@ public class Comments {
     private Long commentId;
     private String comment;
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     @OneToOne
     private User userId;
     @ManyToOne
