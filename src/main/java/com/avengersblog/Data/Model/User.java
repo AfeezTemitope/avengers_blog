@@ -20,9 +20,13 @@ public class User {
     private String firstName;
     private String lastName;
     private String userName;
+    @Column(unique = true)
     private String email;
     private String password;
     private boolean isLoggedIn;
+    @Column(name = "is_enabled", nullable = false)
+    private boolean isEnabled = true;
+
 
     @OneToMany
     private List <Post> posts = new ArrayList<>();
