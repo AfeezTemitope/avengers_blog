@@ -26,4 +26,6 @@ public class User {
 
     @OneToMany
     private List <Post> posts = new ArrayList<>();
+    @ManyToMany
+    private List <Post> sharedPosts = new ArrayList<>();
 }
