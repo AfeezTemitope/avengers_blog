@@ -36,12 +36,12 @@ public class UserController {
         }
     }
     @PostMapping
-    public ResponseEntity<HttResponse> createUser(@RequestBody UserRequest user){
-        UserResponse newUser = userService.savedUser(user);
+    public ResponseEntity<HttResponse> savedUser(@RequestBody UserRequest user){
+        UserResponse userResponse  = userService.savedUser(user);
         return ResponseEntity.created(URI.create("")).body(
                 HttResponse.builder()
                         .timeStamp(LocalDateTime.now().toString())
-                        .data(Map.of("user", newUser))
+                        .data(Map.of("user", userResponse))
                         .status(HttpStatus.CREATED)
                         .statusCode(HttpStatus.CREATED.value())
                         .build()

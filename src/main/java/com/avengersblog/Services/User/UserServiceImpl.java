@@ -9,7 +9,6 @@ import com.avengersblog.Dto.request.User.UserRequest;
 import com.avengersblog.Dto.response.UpdateUserProFileResponse;
 import com.avengersblog.Dto.response.User.UserResponse;
 import com.avengersblog.Services.Email.EmailServiceImpl;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private  final UserRepository userRepository;
     private final ConfirmationRepository confirmationRepository;
     private final EmailServiceImpl emailService;
@@ -26,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UpdateUserProFileResponse updateUserProFile(UpdateUserProFilRequest updateUserProFilRequest) {
-        userRepository.findUserByEmail(updateUserProFilRequest.getEmail());
+        userRepository.findUsersByEmail(updateUserProFilRequest.getEmail());
         User user = new User();
         user.setFirstName(updateUserProFilRequest.getFirstName());
         user.setLastName(updateUserProFilRequest.getLastName());
@@ -43,7 +41,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse savedUser(UserRequest userRequest) {
-        ValidationRegistration(userRequest);
+//        ValidationRegistration(userRequest);
         User user= new User();
 //        user = userRepository.existsByEmail(userRequest.getEmail());
         if(userRepository.existsByEmail(user.getEmail())){ throw new RuntimeException("Email already exists");}
