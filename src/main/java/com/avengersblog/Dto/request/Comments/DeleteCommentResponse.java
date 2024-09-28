@@ -7,4 +7,5 @@ import lombok.Setter;
 @Getter
 public class DeleteCommentResponse {
     private String message;
+
 }

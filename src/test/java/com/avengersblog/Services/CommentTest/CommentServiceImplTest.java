@@ -55,6 +55,20 @@ class CommentServiceImplTest {
         CreateCommentResponse response = commentService.updateComment(updateCommentRequest);
         assertNotNull(response);
     }
+//    @Test
+//    void testThatCommentsCanBeDeleted(){
+//        CreateCommentRequest request = new CreateCommentRequest();
+//        request.setComment("this is the avengers");
+//        request.setCreatedAt(LocalDateTime.now());
+//        request.setUserId(request.getUserId());
+//        request.setPostId(request.getPostId());
+//        commentService.commentsOnPost(request);
+//        CreateCommentResponse response = commentService.commentsOnPost(request);
+//
+//        DeleteCommentResponse deleteCommentResponse = commentService.deleteComment(response);
+//        assertNotNull(deleteCommentResponse);
+//        assertEquals(200, deleteCommentResponse.getStatusCode());
+//        deleteCommentResponse.getMessage("deleted successfully");
       @Test
       void testThatCommentsCanBeDeleted(){
         CreateCommentRequest request = new CreateCommentRequest();
@@ -74,4 +88,5 @@ class CommentServiceImplTest {
 //       DeleteCommentResponse deleteCommentResponse = commentService.deleteComment(response);
 //       deleteCommentResponse.getMessage("deleted successfully");
   }
+
 
