@@ -22,10 +22,10 @@ public class UserServiceImplTest {
     @Test
     void createUser() {
         UserRequest userRequest = new UserRequest();
-        userRequest.setEmail("azeezmuritalaadeniyi@gmail.com");
-        userRequest.setUserName("azeez");
-        userRequest.setLastName("alfa");
-        userRequest.setFirstName("oba");
+        userRequest.setEmail("rebzyobanla2323@gmail.com");
+        userRequest.setUserName("Rebzyspecial");
+        userRequest.setLastName("obanla");
+        userRequest.setFirstName("rebbecca");
         userRequest.setPassword("56432");
 
         UserResponse userResponse = userService.savedUser(userRequest);
