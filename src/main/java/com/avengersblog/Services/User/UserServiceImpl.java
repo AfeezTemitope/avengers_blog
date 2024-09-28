@@ -106,6 +106,15 @@ public class UserServiceImpl implements UserService {
         return userResponse;
     }
 
+    @Override
+    public Boolean verifyToken(String token) {
+        Confirmation confirmation = confirmationRepository.findByToken(token);
+        User user = userRepository.findByEmail(confirmation.getUser().getEmail());
+        user.setEnabled(true);
+        userRepository.save(user);
+        return Boolean.TRUE;
+    }
+
     private void PasswordValidation(User user, String password) {
         if (!password.equals(user.getPassword()) && password.trim().isEmpty()) {
             throw new RuntimeException("Invalid Credentials");
@@ -135,5 +144,8 @@ public class UserServiceImpl implements UserService {
             throw new RuntimeException("User Not Found");
         }
         return userId;
+    }
+    private void findUserName(String userName){
+
     }
 }

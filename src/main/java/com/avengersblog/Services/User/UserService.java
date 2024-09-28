@@ -19,4 +19,5 @@ public interface UserService {
     LikePostResponse likePost (Long userId, Long postId, LikePostRequest likePostRequest);
     UserResponse savedUser(UserRequest userRequest);
 
+    Boolean verifyToken(String token);
 }
