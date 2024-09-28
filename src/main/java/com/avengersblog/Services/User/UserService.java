@@ -1,10 +1,9 @@
 package com.avengersblog.Services.User;
 
-import com.avengersblog.Data.Model.User;
-import com.avengersblog.Dto.request.LikePostRequest;
-import com.avengersblog.Dto.request.LoginRequest;
-import com.avengersblog.Dto.request.SharePostRequest;
-import com.avengersblog.Dto.request.UpdateUserProFilRequest;
+import com.avengersblog.Dto.request.User.LikePostRequest;
+import com.avengersblog.Dto.request.User.LoginRequest;
+import com.avengersblog.Dto.request.User.SharePostRequest;
+import com.avengersblog.Dto.request.User.UpdateUserProFilRequest;
 import com.avengersblog.Dto.response.LikePostResponse;
 import com.avengersblog.Dto.request.User.UserRequest;
 import com.avengersblog.Dto.response.LoginResponse;

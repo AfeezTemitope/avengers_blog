@@ -1,4 +1,4 @@
-package com.avengersblog.Exceptions;
+package com.avengersblog.Exceptions.Comments;
 
 public class CommentException extends RuntimeException {
     public CommentException(String message) {

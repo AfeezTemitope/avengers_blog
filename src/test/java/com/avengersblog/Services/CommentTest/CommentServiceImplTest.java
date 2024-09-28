@@ -4,7 +4,7 @@ import com.avengersblog.Dto.request.Comments.CreateCommentRequest;
 import com.avengersblog.Dto.request.Comments.DeleteCommentResponse;
 import com.avengersblog.Dto.request.Comments.UpdateCommentRequest;
 import com.avengersblog.Dto.response.Comments.CreateCommentResponse;
-import com.avengersblog.Exceptions.CommentException;
+import com.avengersblog.Exceptions.Comments.CommentException;
 import com.avengersblog.Services.Comments.CommentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
