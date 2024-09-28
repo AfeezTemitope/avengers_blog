@@ -1,4 +1,4 @@
-package com.avengersblog.Dto.request;
+package com.avengersblog.Dto.request.User;
 
 import lombok.Getter;
 import lombok.Setter;
