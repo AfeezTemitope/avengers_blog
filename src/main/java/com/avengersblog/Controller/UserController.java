@@ -1,7 +1,7 @@
 package com.avengersblog.Controller;
 
-import com.avengersblog.Dto.request.LoginRequest;
-import com.avengersblog.Dto.request.UpdateUserProFilRequest;
+import com.avengersblog.Dto.request.User.LoginRequest;
+import com.avengersblog.Dto.request.User.UpdateUserProFilRequest;
 import com.avengersblog.Dto.response.ApiResponse;
 import com.avengersblog.Dto.response.LoginResponse;
 import com.avengersblog.Dto.response.UpdateUserProFileResponse;

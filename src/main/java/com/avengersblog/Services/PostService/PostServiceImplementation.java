@@ -2,15 +2,19 @@ package com.avengersblog.Services.PostService;
 
 import com.avengersblog.Data.Model.Category;
 import com.avengersblog.Data.Model.Post;
+import com.avengersblog.Data.Model.User;
 import com.avengersblog.Data.Repository.PostRepository;
+import com.avengersblog.Data.Repository.UserRepository;
 import com.avengersblog.Dto.request.Post.DeletePostRequest;
 import com.avengersblog.Dto.request.Post.UpdatePostRequest;
 import com.avengersblog.Dto.request.Post.UploadPostRequest;
 import com.avengersblog.Dto.response.Post.DeletePostResponse;
 import com.avengersblog.Dto.response.Post.UpdatePostResponse;
+import com.avengersblog.Exceptions.PostExceptions.PostNotFoundException;
+import com.avengersblog.Exceptions.PostExceptions.titleNotFoundException;
+import com.avengersblog.Exceptions.UserExceptions.UserNotFoundException;
 import com.cloudinary.Cloudinary;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,18 +30,23 @@ public class PostServiceImplementation implements PostService {
 
     private final Cloudinary cloudinary;
     private final PostRepository postRepo;
+    private final UserRepository userRepo;
 
     @Override
-    public Post uploadPost(UploadPostRequest postRequest) throws IOException {
+    public Post uploadPost(UploadPostRequest postRequest) throws IOException, titleNotFoundException {
         Post post = buildPost(postRequest);
         String url = uploadContent(postRequest.getImage());
         post.setImageUrl(url);
         return postRepo.save(post);
     }
 
-    private Post buildPost(UploadPostRequest postRequest) {
+    private Post buildPost(UploadPostRequest postRequest) throws titleNotFoundException {
         Post post = new Post();
-        post.setTitle(postRequest.getTitle());
+        if(validate(postRequest.getTitle())){
+            post.setTitle(postRequest.getTitle());
+        }
+        else throw new titleNotFoundException("Invalid title");
+
         post.setCaption(postRequest.getCaption());
         post.setCreatedAt(LocalDateTime.now());
         post.setCategory(postRequest.getCategory());
@@ -57,69 +66,52 @@ public class PostServiceImplementation implements PostService {
         return uploadResult.get("url").toString();
     }
 
-
-//    @Override
-//    public Post uploadPost(UploadPostRequest postRequest) throws IOException {
-//       Post post = buildPost(postRequest);
-//       String url = uploadContent(postRequest.getImage());
-//       post.setImageUrl(url);
-//       return postRepo.save(post);
-//    }
-//    private Post buildPost (UploadPostRequest postRequest){
-//        Post post = new Post();
-//        post.setTitle(postRequest.getTitle());
-//        post.setCaption(postRequest.getCaption());
-//        post.setCreatedAt(LocalDateTime.now());
-//        post.setCategory(postRequest.getCategory());
-//        return post;
-//    }
-//    private String uploadContent(MultipartFile file) throws IOException {
-//        return cloudinary.uploader().upload(file.getBytes(), Map.of("public_id", UUID.randomUUID().toString())).get("url").toString();
-//    }
+    private boolean validate(String title){
+        Post foundTitle = postRepo.findPostByTitle(title);
+        return foundTitle != null;
+    }
 
     @Override
-    public UpdatePostResponse updatePost(UpdatePostRequest updateRequest) {
-        return null;
+    public UpdatePostResponse updatePost(UpdatePostRequest updateRequest) throws PostNotFoundException {
+        Post foundPost = postRepo.findPostByTitle(updateRequest.getTitle());
+        if(foundPost != null){
+            foundPost.setCaption(updateRequest.getCaption());
+            foundPost.setCategory(updateRequest.getCategory());
+            foundPost.setTitle(updateRequest.getTitle());
+        }
+        else throw new PostNotFoundException("Post is nowhere to be found");
+        postRepo.save(foundPost);
+        return new UpdatePostResponse("Your post has been updated");
     }
 
     @Override
     public Post findPostByTitle(String title) {
-        return null;
+        return postRepo.findPostByTitle(title);
     }
 
     @Override
-    public Post findPostById(Long id) {
-        return null;
+    public DeletePostResponse deletePostByTitle(DeletePostRequest deleteRequest) throws PostNotFoundException, UserNotFoundException {
+        if(validateUserCredentials(deleteRequest.getUserName(), deleteRequest.getPassword())){
+            Post foundPost = postRepo.findPostByTitle(deleteRequest.getTitle());
+            if(foundPost != null) postRepo.delete(foundPost);
+            else throw new PostNotFoundException("Post is nowhere to be found");
+        }
+        return new DeletePostResponse("Post has successfully been deleted");
     }
 
-    @Override
-    public DeletePostResponse deletePostById(DeletePostRequest deleteRequest) {
-        return null;
-    }
-
-    @Override
-    public DeletePostResponse deletePostByTitle(DeletePostRequest deleteRequest) {
-        return null;
-    }
-
-    @Override
-    public DeletePostResponse deleteAllPosts(DeletePostRequest deleteRequest) {
-        return null;
+    private boolean validateUserCredentials(String userName, String password) throws UserNotFoundException {
+        User foundUser = userRepo.findUserByUserNameAndPassword(userName, password);
+        if(foundUser != null) return true;
+        else throw new UserNotFoundException("Could not Identify User");
     }
 
     @Override
     public List<Post> displayAllPosts() {
-        return List.of();
+        return postRepo.findAll();
     }
 
     @Override
     public List<Post> findPostsByCategory(Category category) {
-        return List.of();
+        return postRepo.findPostByCategory(category);
     }
-
-    @Override
-    public void likePost(Long like) {
-
-    }
-
 }

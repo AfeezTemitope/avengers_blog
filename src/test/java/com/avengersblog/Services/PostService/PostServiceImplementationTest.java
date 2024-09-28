@@ -3,6 +3,7 @@ package com.avengersblog.Services.PostService;
 import com.avengersblog.Data.Model.Category;
 import com.avengersblog.Data.Model.Post;
 import com.avengersblog.Dto.request.Post.UploadPostRequest;
+import com.avengersblog.Exceptions.PostExceptions.titleNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,7 +40,7 @@ public class PostServiceImplementationTest {
 
             Post post = postServiceImpl.uploadPost(postRequest);
             assertNotNull(post.getImageUrl());
-        } catch (IOException e) {
+        } catch (IOException | titleNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
@@ -58,7 +59,7 @@ public class PostServiceImplementationTest {
 
             Post post = postServiceImpl.uploadPost(postRequest);
             assertNotNull(post.getImageUrl());
-        } catch (IOException e) {
+        } catch (IOException | titleNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
