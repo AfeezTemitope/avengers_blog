@@ -63,16 +63,15 @@ class CommentServiceImplTest {
         request.setUserId(request.getUserId());
         request.setPostId(request.getPostId());
         commentService.commentsOnPost(request);
-<<<<<<< HEAD
+
         CreateCommentResponse response = commentService.commentsOnPost(request);
 
         DeleteCommentResponse deleteCommentResponse = commentService.deleteComment(response);
-//        deleteCommentResponse.getMessage("deleted successfully");
+//       deleteCommentResponse.getMessage("deleted successfully");
     }
-=======
-       CreateCommentResponse response = commentService.commentsOnPost(request);
-       DeleteCommentResponse deleteCommentResponse = commentService.deleteComment(response);
-       deleteCommentResponse.getMessage("deleted successfully");
+
+//       CreateCommentResponse response = commentService.commentsOnPost(request);
+//       DeleteCommentResponse deleteCommentResponse = commentService.deleteComment(response);
+//       deleteCommentResponse.getMessage("deleted successfully");
   }
->>>>>>> f5e35bdc53eb857ca050146eb892e681f7722723
-}
+
