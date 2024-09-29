@@ -11,6 +11,7 @@ import com.avengersblog.Dto.request.Post.UploadPostRequest;
 import com.avengersblog.Dto.response.Post.DeletePostResponse;
 import com.avengersblog.Dto.response.Post.UpdatePostResponse;
 import com.avengersblog.Exceptions.PostExceptions.PostNotFoundException;
+import com.avengersblog.Exceptions.PostExceptions.titleAlreadyExistException;
 import com.avengersblog.Exceptions.PostExceptions.titleNotFoundException;
 import com.avengersblog.Exceptions.UserExceptions.UserNotFoundException;
 import com.cloudinary.Cloudinary;
@@ -33,19 +34,17 @@ public class PostServiceImplementation implements PostService {
     private final UserRepository userRepo;
 
     @Override
-    public Post uploadPost(UploadPostRequest postRequest) throws IOException, titleNotFoundException {
+    public Post uploadPost(UploadPostRequest postRequest) throws IOException, titleNotFoundException, titleAlreadyExistException {
         Post post = buildPost(postRequest);
         String url = uploadContent(postRequest.getImage());
         post.setImageUrl(url);
         return postRepo.save(post);
     }
 
-    private Post buildPost(UploadPostRequest postRequest) throws titleNotFoundException {
+    private Post buildPost(UploadPostRequest postRequest) throws titleNotFoundException, titleAlreadyExistException {
         Post post = new Post();
-        if(validate(postRequest.getTitle())){
-            post.setTitle(postRequest.getTitle());
-        }
-        else throw new titleNotFoundException("Invalid title");
+        boolean isValid = validate(postRequest.getTitle());
+        if(isValid) post.setTitle(postRequest.getTitle());
 
         post.setCaption(postRequest.getCaption());
         post.setCreatedAt(LocalDateTime.now());
@@ -66,9 +65,10 @@ public class PostServiceImplementation implements PostService {
         return uploadResult.get("url").toString();
     }
 
-    private boolean validate(String title){
+    private boolean validate(String title) throws  titleAlreadyExistException {
         Post foundTitle = postRepo.findPostByTitle(title);
-        return foundTitle != null;
+        if (foundTitle == null) return true;
+        else throw new titleAlreadyExistException("This title already exists");
     }
 
     @Override
