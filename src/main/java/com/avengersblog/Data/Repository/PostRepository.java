@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PostRepository extends JpaRepository<Post, Integer> {
-    Post findPOstById(long id);
+public interface PostRepository extends JpaRepository<Post, Long> {
+    Post findPOstById(Long id);
     Post findPostByTitle(String title);
     List<Post> findPostByCategory (Category category);
 }

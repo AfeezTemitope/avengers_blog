@@ -12,6 +12,6 @@ public class CreateCommentRequest {
     private String commentId;
     private String comment;
     private LocalDateTime createdAt;
-    private User userId;
-    private Post postId;
+    private Long userId;
+    private Long postId;
 }

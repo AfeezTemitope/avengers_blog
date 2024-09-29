@@ -1,5 +1,9 @@
 package com.avengersblog.Services.CommentTest;
 
+import com.avengersblog.Data.Model.*;
+import com.avengersblog.Data.Repository.CommentRepository;
+import com.avengersblog.Data.Repository.PostRepository;
+import com.avengersblog.Data.Repository.UserRepository;
 import com.avengersblog.Dto.request.Comments.CreateCommentRequest;
 import com.avengersblog.Dto.request.Comments.DeleteCommentResponse;
 import com.avengersblog.Dto.request.Comments.UpdateCommentRequest;
@@ -9,22 +13,35 @@ import com.avengersblog.Services.Comments.CommentService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 class CommentServiceImplTest {
     @Autowired
     private CommentService commentService;
+    @MockBean
+    private CommentRepository commentRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PostRepository postRepository;
 
     @Test
     void testThatCommentsCanBeAdded(){
+        Post post = new Post();
+        post.setTitle("Sample Post Title");
+        post = postRepository.save(post);
+
         CreateCommentRequest request = new CreateCommentRequest();
-        request.setComment("this is the avengers");
+        request.setComment("This is the Avengers");
         request.setCreatedAt(LocalDateTime.now());
-        request.setUserId(request.getUserId());
-        request.setPostId(request.getPostId());
+        request.setUserId(1L);
+        request.setPostId(1L);
+
 
         CreateCommentResponse response = commentService.commentsOnPost(request);
         assertNotNull(response);
@@ -81,7 +98,7 @@ class CommentServiceImplTest {
         CreateCommentResponse response = commentService.commentsOnPost(request);
 
         DeleteCommentResponse deleteCommentResponse = commentService.deleteComment(response);
-        assertTrue(Boolean.parseBoolean("deleted successfully"), deleteCommentResponse.getMessage());
+        assertTrue(false, deleteCommentResponse.getMessage());
     }
 
 //       CreateCommentResponse response = commentService.commentsOnPost(request);
