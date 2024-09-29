@@ -63,6 +63,7 @@ public class UserController {
 
         );
     }
+    @PostMapping("/confirm")
     public ResponseEntity<HttResponse>confirmationUserAccount(@RequestParam("token")String token){
         Boolean isSuccess = userService.verifyToken(token);
         return ResponseEntity.ok().body(

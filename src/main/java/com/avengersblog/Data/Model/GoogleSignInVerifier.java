@@ -10,7 +10,7 @@ import java.util.Collections;
 
 public class GoogleSignInVerifier {
 
-    private static final String CLIENT_ID = "694495728180-i9ql7bm7geafutiaas68vmp6v5mgqhae.apps.googleusercontent.com";
+    private static final String CLIENT_ID = "813427867071-kq5bhmhptdnka3v0uh9mlfjm2ugib3q2.apps.googleusercontent.com";
 
     public static User verifyAndExtractUserData(String idToken) throws Exception {
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new GsonFactory())

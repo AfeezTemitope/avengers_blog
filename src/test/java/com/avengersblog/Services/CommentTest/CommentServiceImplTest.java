@@ -81,7 +81,7 @@ class CommentServiceImplTest {
         CreateCommentResponse response = commentService.commentsOnPost(request);
 
         DeleteCommentResponse deleteCommentResponse = commentService.deleteComment(response);
-//       deleteCommentResponse.getMessage("deleted successfully");
+        assertTrue(Boolean.parseBoolean("deleted successfully"), deleteCommentResponse.getMessage());
     }
 
 //       CreateCommentResponse response = commentService.commentsOnPost(request);
