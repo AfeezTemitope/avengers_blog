@@ -5,6 +5,7 @@ import com.avengersblog.Dto.request.Post.UploadPostRequest;
 import com.avengersblog.Dto.response.ApiResponse;
 import com.avengersblog.Exceptions.PostExceptions.titleNotFoundException;
 import com.avengersblog.Services.PostService.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +16,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 public class PostController {
+    @Autowired
     private PostService postService;
 
     @PostMapping("/upload")
