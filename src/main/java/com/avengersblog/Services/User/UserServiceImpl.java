@@ -22,6 +22,8 @@ import com.avengersblog.Services.PostService.PostServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -37,12 +39,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UpdateUserProFileResponse updateUserProFile(UpdateUserProFilRequest updateUserProFilRequest) {
-        findUserByEmail(updateUserProFilRequest.getEmail());
-        User user = new User();
-        user.setFirstName(updateUserProFilRequest.getFirstName());
+        Optional <User> userOptional = userRepository.findUserByEmail(updateUserProFilRequest.getEmail());
+        if (userOptional.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
+
+        User user = userOptional .get();
         user.setLastName(updateUserProFilRequest.getLastName());
         user.setEmail(updateUserProFilRequest.getEmail());
         user.setPassword(updateUserProFilRequest.getPassword());
+        user.setUserName(updateUserProFilRequest.getUserName());
         userRepository.save(user);
 
         UpdateUserProFileResponse updateUserProFileResponse = new UpdateUserProFileResponse();
