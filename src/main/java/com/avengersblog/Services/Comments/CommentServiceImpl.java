@@ -45,8 +45,8 @@ public class CommentServiceImpl implements CommentService {
         Comments comment = new Comments();
         comment.setComment(request.getComment());
         comment.setCreatedAt(LocalDateTime.now());
-        comment.setPostId(findPost.get());
-        comment.setUserId(findUser.get());
+        comment.setPostId(request.getPostId());
+        comment.setUserId(request.getUserId());
         commentRepository.save(comment);
         return new CreateCommentResponse();
     }

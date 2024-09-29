@@ -16,8 +16,10 @@ public class Comments {
     private String comment;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    @OneToOne
-    private User userId;
-    @ManyToOne
-    private Post postId;
+//    @OneToOne
+//    private User userId;
+    //@ManyToOne
+    //private Post postId;
+    private Long postId;
+    private Long userId;
 }
