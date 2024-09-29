@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
@@ -60,6 +61,20 @@ public class PostController {
             }
         } catch (Exception e) {
             return new ResponseEntity<>(new ApiResponse(false, "An error occurred while fetching the post"), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/allPosts")
+    public ResponseEntity<?> displayAllPosts() {
+        try {
+            List<Post> posts = postService.displayAllPosts();
+            if (!posts.isEmpty()) {
+                return new ResponseEntity<>(new ApiResponse(true, posts), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(new ApiResponse(false, "No posts found"), HttpStatus.NO_CONTENT);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(false, "An error occurred while fetching the posts"), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
