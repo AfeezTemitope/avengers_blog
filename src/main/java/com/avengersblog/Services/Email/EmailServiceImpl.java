@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService{
     public static final String NEW_USER_ACCOUNT_VERIFICATION = "New User Account Verification";
-    @Value("http://localhost:9002")
+    @Value("http://localhost:3000/emailLogin")
     private String host;
     private String fromEmail;
     private final JavaMailSender emailSender;
