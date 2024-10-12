@@ -3,7 +3,7 @@ package com.avengersblog.Data.Model;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.client.json.gson.jacksonFactory;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -13,7 +13,7 @@ public class GoogleSignInVerifier {
     private static final String CLIENT_ID = "";
 
     public static User verifyAndExtractUserData(String idToken) throws Exception {
-        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new GsonFactory())
+        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new jacksonFactory())
                 .setAudience(Collections.singletonList(CLIENT_ID))
                 .build();
 
